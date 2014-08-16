@@ -1,15 +1,12 @@
 class PostsController < ApplicationController
 
-	def index
-		@post = Post.find(params[:id])
-	end
-
 	def new
 		@post = Post.new
 	end
 
 	def create
 		@post = Post.new(post_params)
+		@post.update_attributes(user_id: current_user.id)
 		if @post.save
 			redirect_to @post
 		else
@@ -19,6 +16,9 @@ class PostsController < ApplicationController
 
 	def show
 		@post = Post.find(params[:id])
+		@post.viewcount += 1
+		@post.save
+		@comment = Comment.new
 	end
 
 	def edit
