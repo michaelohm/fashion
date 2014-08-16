@@ -19,6 +19,7 @@ class PostsController < ApplicationController
 		@post.viewcount += 1
 		@post.save
 		@comment = Comment.new
+		@like = Like.new
 	end
 
 	def edit
