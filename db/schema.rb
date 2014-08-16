@@ -27,7 +27,6 @@ ActiveRecord::Schema.define(version: 20140816132401) do
   create_table "likes", force: true do |t|
     t.integer  "user_id"
     t.integer  "post_id"
-    t.boolean  "liked",      default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -40,8 +39,6 @@ ActiveRecord::Schema.define(version: 20140816132401) do
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
-    t.integer  "likecount",          default: 0
-    t.integer  "commentcount",       default: 0
     t.integer  "viewcount",          default: 0
     t.datetime "created_at"
     t.datetime "updated_at"

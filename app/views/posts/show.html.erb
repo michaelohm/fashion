@@ -17,8 +17,10 @@
 	<p><%= @post.description %></p>
 </div>
 
-<%= render "comments/form", post: @post, comment: @comment %>
-
+<% if user_signed_in? %>
+  <%= render "likes/form", post: @post, like: @like %>
+	<%= render "comments/form", post: @post, comment: @comment %>
+<% end %>
 
 <div class="postcomments">
 	<% @post.comments.each do |comment| %>
