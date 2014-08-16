@@ -19,7 +19,9 @@ class PostsController < ApplicationController
 		@post.viewcount += 1
 		@post.save
 		@comment = Comment.new
-		@like = Like.new
+		unless @like = current_user.likes.find_by_post_id(@post.id)
+			@like = Like.new
+		end
 	end
 
 	def edit
