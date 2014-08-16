@@ -1,0 +1,23 @@
+<div>
+	<%= link_to "Edit", edit_post_path(@post) %>
+	<%= link_to "Delete", post_path(@post), method: :delete %>
+</div>
+
+
+<div>
+  <h1><%= @post.title %></h1>
+</div>
+
+<div>
+  <%= image_tag @post.photo.url(:large) %>
+</div>
+
+<div>
+	<p><%= @post.description %></p>
+</div>
+
+<% @post.comments.each do |comment| %>
+  <div>
+	  <%= comment.content %>
+	</div>
+<% end %>
