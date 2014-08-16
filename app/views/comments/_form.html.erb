@@ -1,0 +1,7 @@
+<div>
+  <%= form_for [post, comment], remote: true do |f| %>
+    <%= f.text_area :content, :placeholder => 'Comment', :class => 'comment' %>
+  	<%= f.hidden_field :post_id, :value => post.id %>
+    <%= f.submit "Comment" %>
+  <% end %>
+</div>
