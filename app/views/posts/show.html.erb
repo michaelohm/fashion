@@ -14,7 +14,8 @@
 </div>
 
 <div>
-	<p><%= @post.description %></p>
+	<p>Description: <%= @post.description %></p>
+	<p>Likes: <%= @post.likes.length %></p>
 </div>
 
 <% if user_signed_in? %>
