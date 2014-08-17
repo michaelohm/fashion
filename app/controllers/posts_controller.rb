@@ -19,8 +19,10 @@ class PostsController < ApplicationController
 		@post.viewcount += 1
 		@post.save
 		@comment = Comment.new
-		unless @like = current_user.likes.find_by_post_id(@post.id)
-			@like = Like.new
+		if user_signed_in?
+			unless @like = current_user.likes.find_by_post_id(@post.id)
+				@like = Like.new
+			end
 		end
 	end
 

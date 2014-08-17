@@ -10,23 +10,7 @@ class LikesController < ApplicationController
 		if current_user && @like.save
 			@post = Post.find(@like.post_id)
 			respond_to do |format|
-				format.js
-			end
-		end
-	end
-
-	def edit
-		@comment = Comment.find(params[:id])
-		@post = Post.find(@comment.post_id)
-	end
-
-	def update
-		@post = Post.find(params[:post_id])
-		@comment = Comment.find(params[:id])
-		@comment.update_attributes(comment_params)
-		if current_user && @comment.save
-			respond_to do |format|
-				format.js
+			  format.js {render inline: "location.reload();" }
 			end
 		end
 	end
@@ -34,6 +18,9 @@ class LikesController < ApplicationController
 	def destroy
 		@like = current_user.likes.find_by_post_id(params[:post_id])
 		@like.destroy
+			respond_to do |format|
+			  format.js {render inline: "location.reload();" }
+			end
 	end
 
 	private
