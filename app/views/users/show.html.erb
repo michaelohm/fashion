@@ -1,0 +1,22 @@
+<h1><%= @user.username %>'s profile</h1>
+
+<h2>Posts:</h2>
+<% @user.posts.each do |post| %>
+	<div>
+		<%= link_to image_tag(post.photo.url(:small)), post_path(post) %>
+	</div>
+<% end %>
+
+<h2>Likes:</h2>
+<% @user.likes.each do |like| %>
+	<div>
+		<%= link_to image_tag(like.post.photo.url(:small)), post_path(like.post) %>
+	</div>
+<% end %>
+
+<h2>Comments:</h2>
+<% @user.comments.each do |comment| %>
+	<div>
+		<%= link_to comment.content, post_path(comment.post) %>
+	</div>
+<% end %>
