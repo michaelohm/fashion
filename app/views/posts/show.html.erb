@@ -1,30 +1,59 @@
-<% if current_user == @post.user %>
+<div class="container">
+	<div id="wrapper">
+		<div class="posts span 8">
+			<div class="post first last">
+
+				<div class="post-img picture">
+					<%= image_tag @post.photo.url(:large) %>
+				</div>
+				<div class="info">
+
+					<span class="post-icon standard"><i class="icon-camera-retro"></i></span>
+				</div>
+
+				<div class="post-content">
+					<div class="post-title">
+						<h2><%= @post.title %></h2>
+					</div>
+
+					<div class="post-meta">
+						<span><i class="icon-user"></i>By <%= @post.user.username %></span> 
+						<span><i class="icon-comments-alt"></i>Likes: <%= @post.likes.length %></span>
+					</div>
+
+					<div class="post-description">
+						<p><%= @post.description %></p>
+					</div>
+				</div>
+			</div>
+
+			<h3>Comments</h3>
+			<div class="comments-sec">
+				<ol class="commentlist postcomments">
+					<% @post.comments.each do |comment| %>
+						<li><%= render "comments/comment", post: @post, comm: comment %></li>
+					<% end %>
+				</ol>
+			</div>
+			<% if current_user == @post.user %>
 	<div>
 		<%= link_to "Edit", edit_post_path(@post) %>
 		<%= link_to "Delete", post_path(@post), method: :delete %>
 	</div>
 <% end %>
 
-<div>
-  <h1><%= @post.title %></h1>
-</div>
-
-<div>
-  <%= image_tag @post.photo.url(:large) %>
-</div>
-
-<div>
-	<p>Description: <%= @post.description %></p>
-	<p>Likes: <%= @post.likes.length %></p>
-</div>
 
 <% if user_signed_in? %>
   <%= render "likes/form", post: @post, like: @like %>
 	<%= render "comments/form", post: @post, comment: @comment %>
 <% end %>
-
-<div class="postcomments">
-	<% @post.comments.each do |comment| %>
-	  <%= render "comments/comment", post: @post, comm: comment %>
-	<% end %>
+		</div>
+	</div>
 </div>
+
+
+
+
+
+
+

@@ -1,10 +1,15 @@
-<div class="comment-<%=comm.id %>">
-  <div class="comment_content">
-  	<%= link_to comm.user.username, user_path(comm.user) %>:
-    <%= comm.content %>
+<div class="comment-<%=comm.id %> comments">
+  <div class="comment_content comment-des">
+  	<div class="comment-by">
+  		<strong><%= link_to comm.user.username, user_path(comm.user) %></strong>
+  	</div>
+  	<p>
+    	<%= comm.content %>
+  	</p>
   </div>
   <% if comm.user == current_user %>
 	  <%= link_to "Edit", edit_post_comment_path(post, comm), remote: true %>
 	  <%= link_to "Delete", post_comment_path(post, comm), :method => :delete, remote: true %>
   <% end %>
+  <br>
 </div>
