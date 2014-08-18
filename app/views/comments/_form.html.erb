@@ -1,7 +1,14 @@
-<div>
+<h3>Leave a Comment</h3>
+<div id="contact-form">
   <%= form_for [post, comment], remote: true do |f| %>
-    <%= f.text_area :content, :placeholder => 'Comment', :class => 'comment' %>
-  	<%= f.hidden_field :post_id, :value => post.id %>
-    <%= f.submit "Comment" %>
+  	<div class="field">
+    	<%= f.text_area :content, :placeholder => 'Comment', :class => 'comment text textarea' %>
+  	</div>
+  	<div class="field">
+  		<%= f.hidden_field :post_id, :value => post.id %>
+  	</div>
+  	<div class="field">
+    	<%= f.submit "Comment", :id => 'send'%>
+  	</div>
   <% end %>
 </div>
